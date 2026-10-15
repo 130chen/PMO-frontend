@@ -18,7 +18,7 @@ export default function ProgressBar({
   const clamped = Math.min(100, Math.max(0, value))
   return (
     <div className={cn('flex items-center gap-2', className)}>
-      <div className={cn('h-2 w-full overflow-hidden rounded-full', trackClassName)}>
+      <div className={cn('h-2 w-full overflow-hidden rounded-full', trackClassName)} title={`${clamped}%`}>
         <div
           className={cn('h-full rounded-full transition-all duration-500', colorClassName)}
           style={{ width: `${clamped}%` }}

@@ -22,8 +22,7 @@ export default function ProjectTable<T extends Record<string, any>>({
                 key={col.key}
                 className={cn(
                   'whitespace-nowrap px-4 py-3 text-xs font-medium uppercase tracking-wide text-muted-foreground',
-                  col.align === 'right' && 'text-right',
-                  col.align === 'center' && 'text-center',
+                  col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left',
                 )}
               >
                 {col.header}
@@ -42,8 +41,7 @@ export default function ProjectTable<T extends Record<string, any>>({
                   key={col.key}
                   className={cn(
                     'whitespace-nowrap px-4 py-3.5 text-foreground',
-                    col.align === 'right' && 'text-right',
-                    col.align === 'center' && 'text-center',
+                    col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left',
                   )}
                 >
                   {col.render ? col.render(row) : row[col.key]}

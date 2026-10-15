@@ -1,4 +1,4 @@
-import SectionHeader from '@/components/common/SectionHeader'
+import { useEffect, useState } from 'react'
 import DashboardCard from '@/components/common/DashboardCard'
 import MetricCard from '@/components/common/MetricCard'
 import ProjectTable from '@/components/common/ProjectTable'
@@ -15,14 +15,44 @@ import {
   keyProjects,
   keyProjectColumns,
 } from '@/data/mockData'
+import { fetchHomeOverview } from '@/api/homeOverview'
+import type { Project } from '@/types'
 
 export default function Overview() {
+  const [totalProjects, setTotalProjects] = useState<number | null>(null)
+  const [projectRows, setProjectRows] = useState<Project[]>(keyProjects)
+
+  useEffect(() => {
+    let cancelled = false
+    fetchHomeOverview()
+      .then((data) => {
+        if (cancelled) return
+        setTotalProjects(data.totalProjects)
+        setProjectRows(
+          keyProjects.map((row, index) => {
+            const real = data.projects[index]
+            return real ? { ...row, name: real.name || real.key } : row
+          }),
+        )
+      })
+      .catch(() => {
+        // 后端读取失败时保留 mock 占位，不影响页面展示
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  const kpis = overviewKpis.map((kpi) =>
+    kpi.id === 'total-projects' && totalProjects !== null
+      ? { ...kpi, value: String(totalProjects) }
+      : kpi,
+  )
+
   return (
     <div className="space-y-6">
-      <SectionHeader title="项目总览" description="统一掌握研发项目进度、质量、资源与风险" />
-
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
-        {overviewKpis.map((kpi) => (
+        {kpis.map((kpi) => (
           <MetricCard key={kpi.id} data={kpi} />
         ))}
       </div>
@@ -84,7 +114,7 @@ export default function Overview() {
       </div>
 
       <DashboardCard title="重点项目" description="核心研发项目进展一览" bodyClassName="pt-4">
-        <ProjectTable columns={keyProjectColumns} rows={keyProjects} />
+        <ProjectTable columns={keyProjectColumns} rows={projectRows} />
       </DashboardCard>
     </div>
   )

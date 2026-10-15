@@ -1,4 +1,3 @@
-import SectionHeader from '@/components/common/SectionHeader'
 import DashboardCard from '@/components/common/DashboardCard'
 import MetricCard from '@/components/common/MetricCard'
 import ProjectTable from '@/components/common/ProjectTable'
@@ -14,8 +13,6 @@ import {
 export default function ProjectProgress() {
   return (
     <div className="space-y-6">
-      <SectionHeader title="项目进度" description="查看项目整体进度、里程碑及延期情况" />
-
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
         {projectProgressKpis.map((kpi) => (
           <MetricCard key={kpi.id} data={kpi} />

@@ -1,4 +1,3 @@
-import SectionHeader from '@/components/common/SectionHeader'
 import DashboardCard from '@/components/common/DashboardCard'
 import MetricCard from '@/components/common/MetricCard'
 import ProjectTable from '@/components/common/ProjectTable'
@@ -17,8 +16,6 @@ const MAX_STAFF_COUNT = Math.max(...staffProjectDistribution.map((item) => item.
 export default function StaffInvestment() {
   return (
     <div className="space-y-6">
-      <SectionHeader title="人员投入" description="查看项目人员配置和工作负荷" />
-
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
         {staffInvestmentKpis.map((kpi) => (
           <MetricCard key={kpi.id} data={kpi} />

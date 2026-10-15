@@ -1,5 +1,4 @@
 import { ExternalLink } from 'lucide-react'
-import SectionHeader from '@/components/common/SectionHeader'
 import DashboardCard from '@/components/common/DashboardCard'
 import ProgressBar from '@/components/common/ProgressBar'
 import StatusBadge from '@/components/common/StatusBadge'
@@ -8,8 +7,6 @@ import { focusProjects } from '@/data/mockData'
 export default function FocusProjects() {
   return (
     <div className="space-y-6">
-      <SectionHeader title="关注项目" description="管理个人重点关注项目以及 Jira / Confluence 链接" />
-
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
         {focusProjects.map((project) => (
           <DashboardCard

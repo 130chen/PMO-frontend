@@ -1,0 +1,7 @@
+﻿git : fatal: write failure on 'stdout': Bad file descriptor
+所在位置 行:2 字符: 79
++ ... cat'; $env:GIT_OPTIONAL_LOCKS='0'; git log --oneline -40 2>&1 | ForEa ...
++                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (fatal: write fa...file descriptor:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

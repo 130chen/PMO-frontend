@@ -1,35 +1,24 @@
-import { Bell, CircuitBoard, Moon, Search, Sun } from 'lucide-react'
-import TopNavigation from './TopNavigation'
+import { Bell, Moon, Search, Sun } from 'lucide-react'
 import AIAssistantButton from '@/components/ai/AIAssistantButton'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useTheme } from '@/context/ThemeContext'
 
 interface HeaderProps {
-  activePageId: string
-  onNavigate: (id: string) => void
+  title: string
+  description?: string
   onOpenAI: () => void
 }
 
-export default function Header({ activePageId, onNavigate, onOpenAI }: HeaderProps) {
+export default function Header({ title, description, onOpenAI }: HeaderProps) {
   const { resolvedMode, setMode } = useTheme()
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
-      <div className="mx-auto flex h-[76px] w-full max-w-content items-center justify-between gap-6 px-6 lg:px-10">
-        <button
-          type="button"
-          onClick={() => onNavigate('overview')}
-          className="flex shrink-0 items-center gap-2.5"
-        >
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/70 text-primary-foreground shadow-soft">
-            <CircuitBoard className="h-4 w-4" strokeWidth={2} />
-          </span>
-          <span className="text-[15px] font-semibold tracking-tight text-foreground">研发项目管理平台</span>
-        </button>
-
-        <div className="flex flex-1 justify-center">
-          <TopNavigation activePageId={activePageId} onNavigate={onNavigate} />
+    <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur">
+      <div className="flex min-h-[76px] items-center justify-between gap-6 px-6 py-3 lg:px-10">
+        <div className="min-w-0">
+          <h1 className="truncate text-lg font-semibold tracking-tight text-foreground">{title}</h1>
+          {description && <p className="mt-0.5 truncate text-xs text-muted-foreground">{description}</p>}
         </div>
 
         <div className="flex shrink-0 items-center gap-2.5">

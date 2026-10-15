@@ -1,4 +1,5 @@
 import {
+  Home,
   TrendingUp,
   PackageCheck,
   GitPullRequestArrow,
@@ -22,13 +23,22 @@ import {
 } from 'lucide-react'
 import type { NavItem } from '@/types'
 
-export const THEME_NAV_ID = 'theme-mode'
-
 export const navItems: NavItem[] = [
+  {
+    id: 'home',
+    title: '首页',
+    items: [
+      {
+        id: 'overview',
+        title: '首页',
+        description: '统一掌握研发项目进度、质量、资源与风险',
+        icon: Home,
+      },
+    ],
+  },
   {
     id: 'project-management',
     title: '项目管理',
-    columns: 3,
     items: [
       {
         id: 'project-progress',
@@ -53,6 +63,12 @@ export const navItems: NavItem[] = [
         title: '重点总结',
         description: '查看项目阶段性成果、风险和重点事项',
         icon: ClipboardList,
+      },
+      {
+        id: 'jira-projects',
+        title: '项目列表',
+        description: '查看配置的项目清单，点击详情可查看任务排期',
+        icon: Boxes,
       },
       {
         id: 'quality-health',
@@ -95,7 +111,6 @@ export const navItems: NavItem[] = [
   {
     id: 'compliance',
     title: '合规内控',
-    columns: 2,
     items: [
       {
         id: 'work-hours',
@@ -138,7 +153,6 @@ export const navItems: NavItem[] = [
   {
     id: 'system-config',
     title: '系统配置',
-    columns: 2,
     items: [
       {
         id: 'field-mapping',
